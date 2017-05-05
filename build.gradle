@@ -1,0 +1,45 @@
+/*
+plugins { id 'io.spring.dependency-management' version '1.0.2.RELEASE' }
+dependencyManagement { imports { mavenBom 'org.springframework.boot:spring-boot-dependencies:2.0.0.BUILD-SNAPSHOT' } }
+*/
+plugins {
+    id 'java'
+    id 'idea'
+    id 'eclipse'
+    id 'org.springframework.boot' version '1.5.3.RELEASE'
+    id 'com.ewerk.gradle.plugins.querydsl' version '1.0.8'
+}
+
+querydsl {
+    querydslSourcesDir = 'src/main/gen'
+    querydslDefault = true
+    jpa = true
+}
+
+sourceSets {
+    generated
+    main
+    test
+}
+
+version = '0.0.1'
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('com.querydsl:querydsl-core')
+    compile('com.querydsl:querydsl-jpa')
+    compile('com.querydsl:querydsl-apt')
+    compile('com.h2database:h2')
+    compile('org.webjars:webjars-locator:0.32')
+    compile('org.webjars:bootstrap:3.3.7')
+    compile('org.webjars.npm:types__whatwg-fetch:0.0.33')
+    compile('org.projectlombok:lombok')
+    runtime('org.springframework.boot:spring-boot-devtools')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}

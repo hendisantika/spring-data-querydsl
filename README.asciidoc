@@ -1,0 +1,30 @@
+= spring-data-querydsl image:https://travis-ci.org/daggerok/spring-data-querydsl.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/spring-data-querydsl"]
+
+Spring Boot, Sring-Data, QueryDSL: full text search example
+
+stack:
+
+- querydsl
+- gradle
+- spring
+
+==== generate Q-classes deom JPA:
+
+[bash]
+----
+gradle compileQuerydsl
+----
+
+==== build / run application
+
+[bash]
+----
+gradle clean build
+----
+
+==== or
+
+[bash]
+----
+gradle bootRun
+----

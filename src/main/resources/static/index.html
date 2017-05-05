@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QueryDSL</title>
+  <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+  <style>
+    body {
+      padding-top: 1%;
+    }
+    ul {
+      list-style-type: none;
+    }
+  </style>
+</head>
+<body class="container">
+<div id="input"></div>
+<pre id="url"></pre>
+<div id="app"></div>
+<script>
+
+  (function () {
+    'use strict';
+
+    const $ = selector => document.querySelector(selector);
+    const render = (selector, content) => $(selector).innerHTML = content;
+    const valueBy = id => document.getElementById(id).value.trim() || '';
+
+    function p() {
+      return [...arguments]
+        .map(content => `<p>${content}</p>`)
+        .join('');
+    }
+
+    const pre = content => `<pre>${JSON.stringify(content)}</pre>`;
+    const ul = objects => `<ul>${
+      objects
+        .filter(object => object.hasOwnProperty('name'))
+        .map(user => user.name)
+        .map((name, index)=> `<li data-id="${index}">${name}</li>`)
+        .join('')
+    }</ul>`;
+
+    const input = ({ id, placeholder }) => `
+      <input
+        type="text"
+        id="${id}"
+        placeholder="${placeholder}"
+      />
+      <br/>
+    `;
+
+    const getUsers = (filters = {}) => {
+
+      const base = '/api/v1/domains';
+      const requestParams = Object
+        .keys(filters)
+          .map((param, i) => (i > 0 ? '&' : '?') + `${param}=${filters[param]}`)
+          .join('');
+      const url = base + requestParams;
+
+      return fetch(url)
+        .then(resp => resp.json())
+        .then(users => render(
+          '#app',
+          p(
+            pre(users),
+            ul(users)
+          )
+        ))
+        .then(() => render('#url', url))
+        .catch(alert);
+    };
+
+    function onEnterPress({ keyCode }) {
+      if (!keyCode || keyCode !== 13) return;
+
+      const filters = {};
+
+      inputs
+        .map(item => item.id)
+        .map(key => ({ key, val: valueBy(key) }))
+        .filter(f => !!f.val)
+        .filter(f => f.val.length > 0)
+        .forEach(f => filters[f.key] = encodeURIComponent(f.val));
+
+      getUsers(filters);
+    }
+
+    const inputs = [
+      { id: 'username', placeholder: 'Domain username filter', },
+      { id: 'firstName', placeholder: 'Domain firstName filter', },
+      { id: 'lastName', placeholder: 'Domain lastName filter', },
+      { id: 'tests', placeholder: 'Other Domain tests filter', },
+    ];
+
+    render(
+      '#input',
+      p(
+        inputs.map(input).join('')
+      )
+    );
+
+    render(
+      '#app',
+      p(
+        'add filter criteria\'s',
+        'or just press enter to fetch all domains'
+      )
+    );
+
+    document.addEventListener('keydown', onEnterPress);
+
+  })();
+
+</script>
+</body>
+</html>
