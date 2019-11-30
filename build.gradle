@@ -6,7 +6,7 @@ plugins {
     id 'java'
     id 'idea'
     id 'eclipse'
-    id 'org.springframework.boot' version '2.2.0.RELEASE'
+    id 'org.springframework.boot' version '2.2.1.RELEASE'
     id 'com.ewerk.gradle.plugins.querydsl' version '1.0.8'
 }
 
@@ -30,16 +30,16 @@ repositories {
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile('org.springframework.boot:spring-boot-starter-web')
-    compile('com.querydsl:querydsl-core')
-    compile('com.querydsl:querydsl-jpa')
-    compile('com.querydsl:querydsl-apt')
-    compile('com.h2database:h2')
-    compile('org.webjars:webjars-locator:0.32')
-    compile('org.webjars:bootstrap:3.3.7')
-    compile('org.webjars.npm:types__whatwg-fetch:0.0.33')
-    compile('org.projectlombok:lombok')
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('com.querydsl:querydsl-core')
+    implementation('com.querydsl:querydsl-jpa')
+    implementation('com.querydsl:querydsl-apt')
+    implementation('com.h2database:h2')
+    implementation('org.webjars:webjars-locator:0.32')
+    implementation('org.webjars:bootstrap:3.3.7')
+    implementation('org.webjars.npm:types__whatwg-fetch:0.0.33')
+    implementation('org.projectlombok:lombok')
     runtime('org.springframework.boot:spring-boot-devtools')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
