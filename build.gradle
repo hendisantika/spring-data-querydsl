@@ -6,7 +6,7 @@ plugins {
     id 'java'
     id 'idea'
     id 'eclipse'
-    id 'org.springframework.boot' version '2.2.8.RELEASE'
+    id 'org.springframework.boot' version '2.2.9.RELEASE'
     id 'com.ewerk.gradle.plugins.querydsl' version '1.0.8'
 }
 
