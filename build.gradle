@@ -36,7 +36,7 @@ dependencies {
     implementation('com.querydsl:querydsl-jpa')
     implementation('com.querydsl:querydsl-apt')
     implementation('com.h2database:h2')
-    implementation('org.webjars:webjars-locator:0.32')
+    implementation('org.webjars:webjars-locator:0.52')
     implementation('org.webjars:bootstrap:3.3.7')
     implementation('org.webjars.npm:types__whatwg-fetch:0.0.33')
     implementation('org.projectlombok:lombok')
