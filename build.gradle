@@ -37,7 +37,7 @@ dependencies {
     implementation('com.querydsl:querydsl-apt')
     implementation('com.h2database:h2')
     implementation('org.webjars:webjars-locator:0.52')
-    implementation('org.webjars:bootstrap:5.3.7')
+    implementation('org.webjars:bootstrap:5.3.8')
     implementation('org.webjars.npm:types__whatwg-fetch:0.0.33')
     implementation('org.projectlombok:lombok')
     runtime('org.springframework.boot:spring-boot-devtools')
